@@ -1,0 +1,42 @@
+<%- include('../includes/header') %>
+<section class="page-top"><div class="wrap"><h1>Admin panel</h1><p>Add, edit and remove your books.</p></div></section>
+<main class="wrap section-tight">
+    <%- include('menu', { tab: 'books' }) %>
+
+    <div class="toolbar">
+        <h2><%= books.length %> book<%= books.length === 1 ? '' : 's' %></h2>
+        <a class="btn btn-buy" href="/admin/books/new">＋ Add new book</a>
+    </div>
+
+    <% if (!books.length) { %>
+        <div class="empty"><div class="empty-ico">📚</div><h3>No books yet</h3><p>Add your first book to start selling.</p><a class="btn btn-buy" href="/admin/books/new">＋ Add new book</a></div>
+    <% } else { %>
+        <div class="table-card">
+        <table class="table">
+            <thead><tr><th>Book</th><th>Category</th><th>Price</th><th>Actions</th></tr></thead>
+            <tbody>
+            <% books.forEach((b) => { %>
+                <tr>
+                    <td data-label="Book">
+                        <div class="book-cell">
+                            <img class="thumb" src="<%= imgSrc(b.img) %>" alt="" onerror="this.onerror=null;this.src='/default-book-cover.svg'">
+                            <div><strong><%= b.title %></strong> <% if (b.featured) { %><span class="tag">Featured</span><% } %><br><small>by <%= b.author %></small></div>
+                        </div>
+                    </td>
+                    <td data-label="Category"><%= b.category %></td>
+                    <td data-label="Price"><strong><%= money(b.price) %></strong></td>
+                    <td data-label="Actions"><div class="acts">
+                        <a class="btn btn-small btn-line" href="/admin/books/<%= b._id %>/edit">✎ Edit</a>
+                        <form method="post" action="/admin/books/<%= b._id %>/delete" onsubmit="return confirm('Remove this book from the store? This cannot be undone.')">
+                            <button class="btn btn-small btn-red">🗑 Remove</button>
+                        </form>
+                        </div>
+                    </td>
+                </tr>
+            <% }) %>
+            </tbody>
+        </table>
+        </div>
+    <% } %>
+</main>
+<%- include('../includes/footer') %>

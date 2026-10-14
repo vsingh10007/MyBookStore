@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" role="img" aria-label="A stack of books with a cup of tea and a plant">
+<defs>
+ <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3f8a6e"/><stop offset="1" stop-color="#1f4d47"/></linearGradient>
+</defs>
+<circle cx="330" cy="260" r="235" fill="#f3dfbf" opacity=".75"/>
+<circle cx="330" cy="260" r="175" fill="#f7e9d0"/>
+<ellipse cx="320" cy="478" rx="270" ry="22" fill="#1f4d47" opacity=".12"/>
+
+<!-- leaning book -->
+<g transform="rotate(-11 95 470)"><rect x="70" y="270" width="64" height="200" rx="8" fill="#2b665e"/><rect x="70" y="270" width="12" height="200" rx="6" fill="#000" opacity=".2"/><rect x="82" y="305" width="40" height="4" fill="#fff" opacity=".6"/><rect x="82" y="316" width="40" height="3" fill="#fff" opacity=".35"/><rect x="88" y="360" width="28" height="44" rx="4" fill="#e9b44c"/></g>
+
+<!-- stack -->
+<g>
+  <rect x="140" y="416" width="350" height="58" rx="9" fill="#d9693f"/>
+  <rect x="156" y="424" width="336" height="42" rx="5" fill="#fff8ec"/>
+  <rect x="168" y="444" width="300" height="2" rx="1" fill="#e6d8c0"/>
+  <rect x="168" y="452" width="280" height="2" rx="1" fill="#e6d8c0"/>
+  <rect x="140" y="416" width="22" height="58" rx="9" fill="#7a2e12" opacity=".35"/>
+  </g>
+<g>
+  <rect x="170" y="362" width="296" height="54" rx="9" fill="#1f4d47"/>
+  <rect x="186" y="370" width="282" height="38" rx="5" fill="#fff8ec"/>
+  <rect x="198" y="388" width="246" height="2" rx="1" fill="#e6d8c0"/>
+  <rect x="198" y="396" width="226" height="2" rx="1" fill="#e6d8c0"/>
+  <rect x="170" y="362" width="22" height="54" rx="9" fill="#0b2420" opacity=".35"/>
+  </g>
+<g>
+  <rect x="150" y="310" width="322" height="52" rx="9" fill="#e9b44c"/>
+  <rect x="166" y="318" width="308" height="36" rx="5" fill="#fff8ec"/>
+  <rect x="178" y="335" width="272" height="2" rx="1" fill="#e6d8c0"/>
+  <rect x="178" y="343" width="252" height="2" rx="1" fill="#e6d8c0"/>
+  <rect x="150" y="310" width="22" height="52" rx="9" fill="#8a5d0a" opacity=".35"/>
+  </g>
+<g>
+  <rect x="185" y="262" width="250" height="48" rx="9" fill="#a4452c"/>
+  <rect x="201" y="270" width="236" height="32" rx="5" fill="#fff8ec"/>
+  <rect x="213" y="285" width="200" height="2" rx="1" fill="#e6d8c0"/>
+  <rect x="213" y="293" width="180" height="2" rx="1" fill="#e6d8c0"/>
+  <rect x="185" y="262" width="22" height="48" rx="9" fill="#4a1b0d" opacity=".35"/>
+  </g>
+
+<!-- tea cup -->
+<g transform="translate(270 190)">
+ <path d="M0 8 h92 v34 a40 40 0 0 1 -40 40 h-12 a40 40 0 0 1 -40 -40z" fill="#fffaf0" stroke="#e6d8c0" stroke-width="3"/>
+ <path d="M92 20 q34 4 22 30 q-8 14 -30 14" fill="none" stroke="#fffaf0" stroke-width="9" stroke-linecap="round"/>
+ <ellipse cx="46" cy="8" rx="46" ry="8" fill="#a4452c"/>
+ <path d="M22 -14 q-12 -18 0 -36 M46 -14 q-12 -18 0 -36 M70 -14 q-12 -18 0 -36" fill="none" stroke="#c9b38f" stroke-width="5" stroke-linecap="round" opacity=".8"/>
+</g>
+
+<!-- plant -->
+<g transform="translate(520 470)">
+ <path d="M-46 0 h92 l-12 -70 h-68z" fill="#d9693f"/><rect x="-52" y="-84" width="104" height="18" rx="8" fill="#c4562e"/>
+ <g fill="url(#leaf)">
+  <path d="M0 -84 C-50 -120 -70 -190 -40 -230 C-10 -190 0 -140 0 -84z"/>
+  <path d="M0 -84 C50 -130 76 -180 56 -236 C14 -196 0 -140 0 -84z"/>
+  <path d="M0 -84 C-12 -150 -4 -200 12 -262 C34 -200 18 -140 0 -84z"/>
+  <path d="M0 -84 C-60 -92 -96 -130 -92 -172 C-50 -160 -10 -128 0 -84z"/>
+ </g>
+</g>
+
+<!-- sparkles -->
+<g fill="#e9b44c"><circle cx="110" cy="120" r="6"/><circle cx="560" cy="110" r="5"/><circle cx="470" cy="60" r="4"/><circle cx="210" cy="70" r="3.5"/></g>
+<g fill="#d9693f" opacity=".7"><circle cx="540" cy="200" r="4"/><circle cx="90" cy="220" r="3"/></g>
+</svg>

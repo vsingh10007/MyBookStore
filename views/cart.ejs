@@ -1,0 +1,37 @@
+<%- include('includes/header') %>
+<section class="page-top"><div class="wrap"><h1>Your cart</h1><p><%= cart.items.length %> item<%= cart.items.length === 1 ? '' : 's' %> in your cart</p></div></section>
+<main class="wrap section-tight">
+    <% if (!cart.items.length) { %>
+        <div class="empty"><div class="empty-ico">🛒</div><h3>Your cart is empty</h3><p>Find a book you like and add it to your cart.</p><a class="btn btn-buy" href="/books">Browse books</a></div>
+    <% } else { %>
+        <div class="cart-layout">
+            <div class="cart-list">
+                <% cart.items.forEach((i) => { %>
+                <div class="cart-item">
+                    <a href="/book/<%= i.book._id %>"><img src="<%= imgSrc(i.book.img) %>" alt="" onerror="this.onerror=null;this.src='/default-book-cover.svg'"></a>
+                    <div class="cart-info">
+                        <h3><a href="/book/<%= i.book._id %>"><%= i.book.title %></a></h3>
+                        <p class="author">by <%= i.book.author %></p>
+                        <p class="price-s"><%= money(i.book.price) %> each</p>
+                    </div>
+                    <form class="qty" method="post" action="/cart/update/<%= i.book._id %>">
+                        <input type="number" name="qty" min="1" max="20" value="<%= i.qty %>" aria-label="Quantity">
+                        <button class="btn btn-small btn-line">Update</button>
+                    </form>
+                    <div class="line-total"><%= money(i.line) %></div>
+                    <form method="post" action="/cart/remove/<%= i.book._id %>"><button class="link-red">Remove</button></form>
+                </div>
+                <% }) %>
+            </div>
+            <aside class="summary">
+                <h2>Order summary</h2>
+                <p class="line"><span>Subtotal</span><span><%= money(cart.total) %></span></p>
+                <p class="line"><span>Payment</span><span>Cash on delivery</span></p>
+                <p class="line total"><span>Total</span><strong><%= money(cart.total) %></strong></p>
+                <a class="btn btn-buy btn-big btn-block" href="/checkout">Checkout</a>
+                <a class="btn btn-line btn-block" href="/books">Continue shopping</a>
+            </aside>
+        </div>
+    <% } %>
+</main>
+<%- include('includes/footer') %>

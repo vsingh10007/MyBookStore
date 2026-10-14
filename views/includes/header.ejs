@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %> | <%= store %> Book Store</title>
+    <meta name="theme-color" content="#f8f3e9">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%9A%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<% const on = (p) => (p === '/' ? currentPath === '/' : currentPath === p || currentPath.startsWith(p + '/')); %>
+<header class="header">
+    <div class="wrap header-row">
+        <a class="logo" href="/"><span class="logo-ico">📚</span><%= store %></a>
+
+        <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Open menu">
+        <label for="menu-toggle" class="menu-btn" aria-hidden="true"><span></span><span></span><span></span></label>
+
+        <nav class="menu">
+            <a href="/" class="<%= on('/') ? 'active' : '' %>">Home</a>
+            <a href="/books" class="<%= on('/books') || on('/book') ? 'active' : '' %>">Books</a>
+            <a href="/category" class="<%= on('/category') ? 'active' : '' %>">Categories</a>
+            <a href="/about" class="<%= on('/about') ? 'active' : '' %>">About</a>
+            <a href="/contact" class="<%= on('/contact') ? 'active' : '' %>">Contact</a>
+            <a href="<%= isAdmin ? '/admin' : '/admin/login' %>" class="pill pill-outline <%= on('/admin') ? 'active' : '' %>">⚙ Admin panel</a>
+            <a href="/cart" class="pill pill-cart <%= on('/cart') ? 'active' : '' %>">🛒 Cart <span class="badge"><%= cartCount %></span></a>
+        </nav>
+    </div>
+</header>
+<% if (flash) { %><div class="wrap"><p class="message"><%= flash %></p></div><% } %>

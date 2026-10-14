@@ -1,0 +1,84 @@
+<%- include('includes/header') %>
+
+<section class="hero">
+    <div class="wrap hero-grid">
+        <div class="hero-text">
+            <span class="eyebrow">📖 Welcome to <%= store %></span>
+            <h1>Find a book you will <em>love</em> to read</h1>
+            <p>Stories, ideas and guides picked with care. Add to your cart, order in a minute and pay when your books arrive.</p>
+            <div class="hero-buttons">
+                <a class="btn btn-buy btn-big" href="/books">Shop books</a>
+                <a class="btn btn-line btn-big" href="/category">Browse categories</a>
+            </div>
+            <ul class="hero-points">
+                <li>✔ Cash on delivery</li>
+                <li>✔ Easy ordering</li>
+                <li>✔ <%= total %> book<%= total === 1 ? '' : 's' %> in store</li>
+            </ul>
+        </div>
+        <div class="hero-art"><img src="/banners/hero.svg" alt="A stack of books with a cup of tea and a plant"></div>
+    </div>
+</section>
+
+<% if (categories.length) { %>
+<section class="section wrap">
+    <div class="section-head">
+        <div><span class="eyebrow-s">Explore</span><h2>Shop by category</h2></div>
+        <a class="more" href="/category">All categories →</a>
+    </div>
+    <div class="cat-grid">
+        <% categories.slice(0, 6).forEach((c, i) => { %>
+        <a class="cat-card tone<%= i % 5 %>" href="/category/<%= encodeURIComponent(c.name) %>">
+            <span class="cat-letter"><%= c.name.charAt(0) %></span>
+            <strong><%= c.name %></strong>
+            <small><%= c.count %> book<%= c.count === 1 ? '' : 's' %></small>
+        </a>
+        <% }) %>
+    </div>
+</section>
+<% } %>
+
+<% if (featured.length) { %>
+<section class="section wrap book-listing">
+    <div class="section-head">
+        <div><span class="eyebrow-s">Our picks</span><h2>Featured books</h2></div>
+    </div>
+    <div class="grid grid-4">
+        <% featured.forEach((book) => { %><%- include('includes/card', { book }) %><% }) %>
+    </div>
+</section>
+<% } %>
+
+<section class="wrap">
+    <div class="promo">
+        <img src="/banners/promo.svg" alt="">
+        <div class="promo-text">
+            <h2>Order now, pay when it arrives</h2>
+            <p>No online payment needed. Choose your books, check out in a minute and pay in cash on delivery.</p>
+            <a class="btn btn-buy" href="/books">Start shopping</a>
+        </div>
+    </div>
+</section>
+
+<% if (total === 0) { %>
+<section class="section wrap">
+    <div class="empty">
+        <div class="empty-ico">📚</div>
+        <h3>The shelves are empty for now</h3>
+        <p>Books will appear here as soon as they are added.</p>
+        <% if (isAdmin) { %><a class="btn btn-buy" href="/admin/books/new">Add the first book</a><% } %>
+    </div>
+</section>
+<% } else if (latest.length) { %>
+<section class="section wrap book-listing">
+    <div class="section-head">
+        <div><span class="eyebrow-s">Just in</span><h2>New arrivals</h2></div>
+        <a class="more" href="/books">See all books →</a>
+    </div>
+    <div class="grid">
+        <% latest.forEach((book) => { %><%- include('includes/card', { book }) %><% }) %>
+    </div>
+</section>
+<% } %>
+
+<%- include('includes/footer') %>

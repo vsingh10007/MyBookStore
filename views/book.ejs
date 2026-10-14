@@ -1,0 +1,31 @@
+<%- include('includes/header') %>
+<main class="wrap section-tight book-listing">
+    <p class="crumbs"><a href="/">Home</a> › <a href="/books">Books</a> › <a href="/category/<%= encodeURIComponent(book.category) %>"><%= book.category %></a></p>
+
+    <div class="detail">
+        <div class="detail-img">
+            <img src="<%= imgSrc(book.img) %>" alt="Cover of <%= book.title %>" onerror="this.onerror=null;this.src='/default-book-cover.svg'">
+        </div>
+        <div class="detail-info">
+            <a class="cat" href="/category/<%= encodeURIComponent(book.category) %>"><%= book.category %></a>
+            <h1><%= book.title %></h1>
+            <p class="author big">by <%= book.author %></p>
+            <p class="price big"><%= money(book.price) %></p>
+            <% if (book.description) { %><p class="desc"><%= book.description %></p><% } else { %><p class="desc muted">No description yet.</p><% } %>
+            <div class="detail-buttons">
+                <form method="post" action="/cart/add/<%= book._id %>"><button class="btn btn-line btn-big">🛒 Add to cart</button></form>
+                <form method="post" action="/cart/add/<%= book._id %>"><input type="hidden" name="buy" value="1"><button class="btn btn-buy btn-big">Buy now</button></form>
+            </div>
+            <ul class="hero-points"><li>✔ Cash on delivery</li><li>✔ Easy ordering</li></ul>
+            <% if (isAdmin) { %><p><a class="btn btn-small btn-line" href="/admin/books/<%= book._id %>/edit">✎ Edit this book</a></p><% } %>
+        </div>
+    </div>
+
+    <% if (related.length) { %>
+    <div class="section-head" style="margin-top:2.5rem"><div><span class="eyebrow-s">You may also like</span><h2>More in <%= book.category %></h2></div></div>
+    <div class="grid">
+        <% related.forEach((b) => { %><%- include('includes/card', { book: b }) %><% }) %>
+    </div>
+    <% } %>
+</main>
+<%- include('includes/footer') %>

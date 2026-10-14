@@ -1,0 +1,23 @@
+<footer class="footer">
+    <div class="wrap footer-grid">
+        <div>
+            <a class="logo logo-light" href="/"><span class="logo-ico">📚</span><%= store %></a>
+            <p>Good books, easy ordering. Add to your cart and pay when it arrives.</p>
+        </div>
+        <div>
+            <h4>Shop</h4>
+            <a href="/books">All books</a>
+            <a href="/category">Categories</a>
+            <a href="/cart">Your cart</a>
+        </div>
+        <div>
+            <h4>Help</h4>
+            <a href="/about">About us</a>
+            <a href="/contact">Contact</a>
+            <a href="<%= isAdmin ? '/admin' : '/admin/login' %>">Admin panel</a>
+        </div>
+    </div>
+    <div class="copy">© <%= new Date().getFullYear() %> <%= store %> Book Store</div>
+</footer>
+</body>
+</html>

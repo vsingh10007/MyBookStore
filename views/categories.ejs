@@ -1,0 +1,21 @@
+<%- include('includes/header') %>
+<section class="page-top"><div class="wrap">
+    <h1><%= active || 'Categories' %></h1>
+    <p><%= active ? books.length + ' book' + (books.length === 1 ? '' : 's') + ' in this category' : 'Pick a category to explore' %></p>
+</div></section>
+<main class="wrap section-tight book-listing">
+    <div class="chips">
+        <a href="/category" class="<%= !active ? 'on' : '' %>">All</a>
+        <% categories.forEach((c) => { %>
+            <a href="/category/<%= encodeURIComponent(c.name) %>" class="<%= c.name.toLowerCase() === active.toLowerCase() ? 'on' : '' %>"><%= c.name %> <small><%= c.count %></small></a>
+        <% }) %>
+    </div>
+    <% if (!books.length) { %>
+        <div class="empty"><div class="empty-ico">📂</div><h3>Nothing here yet</h3><p>There are no books in this category.</p><a class="btn btn-dark" href="/books">Browse all books</a></div>
+    <% } else { %>
+        <div class="grid">
+            <% books.forEach((book) => { %><%- include('includes/card', { book }) %><% }) %>
+        </div>
+    <% } %>
+</main>
+<%- include('includes/footer') %>

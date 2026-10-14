@@ -1,0 +1,18 @@
+<%- include('../includes/header') %>
+<section class="page-top"><div class="wrap"><h1>Messages</h1><p>Messages from the Contact page.</p></div></section>
+<main class="wrap section-tight">
+    <%- include('menu', { tab: 'messages' }) %>
+    <% if (!messages.length) { %>
+        <div class="empty"><div class="empty-ico">✉</div><h3>No messages yet</h3><p>Messages will appear here.</p></div>
+    <% } else { %>
+        <% messages.forEach((m) => { %>
+        <div class="box">
+            <p class="line"><strong><%= m.name %></strong><span class="muted"><%= new Date(m.createdAt).toLocaleString('en-IN') %></span></p>
+            <p><a href="mailto:<%= m.email %>"><%= m.email %></a><% if (m.phone) { %> · <%= m.phone %><% } %></p>
+            <p class="pre"><%= m.message %></p>
+            <form method="post" action="/admin/messages/<%= m._id %>/delete" onsubmit="return confirm('Delete this message?')"><button class="btn btn-small btn-red">Delete</button></form>
+        </div>
+        <% }) %>
+    <% } %>
+</main>
+<%- include('../includes/footer') %>

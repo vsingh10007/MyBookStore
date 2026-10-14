@@ -1,0 +1,22 @@
+<article class="card">
+    <a class="card-cover" href="/book/<%= book._id %>" aria-label="View <%= book.title %>">
+        <img src="<%= imgSrc(book.img) %>" alt="Cover of <%= book.title %>" loading="lazy" onerror="this.onerror=null;this.src='/default-book-cover.svg'">
+        <% if (book.featured) { %><span class="ribbon">Featured</span><% } %>
+    </a>
+    <div class="card-body">
+        <a class="cat" href="/category/<%= encodeURIComponent(book.category || 'General') %>"><%= book.category || 'General' %></a>
+        <h3><a href="/book/<%= book._id %>"><%= book.title %></a></h3>
+        <p class="author">by <%= book.author %></p>
+        <p class="card-description"><%= book.description || 'No description available.' %></p>
+        <p class="price"><%= money(book.price) %></p>
+        <div class="buttons">
+            <form method="post" action="/cart/add/<%= book._id %>">
+                <button class="btn btn-line"><span class="button-label">Add to cart</span><span class="button-icon" aria-hidden="true">+</span></button>
+            </form>
+            <form method="post" action="/cart/add/<%= book._id %>">
+                <input type="hidden" name="buy" value="1">
+                <button class="btn btn-buy"><span class="button-label">Buy now</span><span class="button-icon" aria-hidden="true">→</span></button>
+            </form>
+        </div>
+    </div>
+</article>

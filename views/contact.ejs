@@ -1,0 +1,15 @@
+<%- include('includes/header') %>
+<section class="page-top"><div class="wrap"><h1>Contact us</h1><p>Questions about a book or an order? Send us a message.</p></div></section>
+<main class="wrap section-tight narrow">
+    <% if (error) { %><p class="message error"><%= error %></p><% } %>
+    <form class="form" action="/contact" method="post">
+        <label>Your name <input type="text" name="name" value="<%= v.name || '' %>" required></label>
+        <div class="two">
+            <label>Email <input type="email" name="email" value="<%= v.email || '' %>" required></label>
+            <label>Phone (optional) <input type="tel" name="phone" value="<%= v.phone || '' %>"></label>
+        </div>
+        <label>Message <textarea name="message" rows="5" required><%= v.message || '' %></textarea></label>
+        <button class="btn btn-dark btn-big">Send message</button>
+    </form>
+</main>
+<%- include('includes/footer') %>

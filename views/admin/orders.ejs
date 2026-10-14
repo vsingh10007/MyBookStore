@@ -1,0 +1,23 @@
+<%- include('../includes/header') %>
+<section class="page-top"><div class="wrap"><h1>Orders</h1><p>Customer orders (cash on delivery).</p></div></section>
+<main class="wrap section-tight">
+    <%- include('menu', { tab: 'orders' }) %>
+    <% if (!orders.length) { %>
+        <div class="empty"><div class="empty-ico">🧾</div><h3>No orders yet</h3><p>Orders will appear here when customers check out.</p></div>
+    <% } else { %>
+        <% orders.forEach((o) => { %>
+        <div class="box order">
+            <p class="line"><strong><%= o.orderNo %></strong><span class="muted"><%= new Date(o.createdAt).toLocaleString('en-IN') %></span></p>
+            <p><strong><%= o.name %></strong> · <%= o.phone %><br><span class="muted"><%= o.address %>, <%= o.city %> - <%= o.pincode %></span></p>
+            <ul><% o.items.forEach((i) => { %><li><%= i.title %> × <%= i.qty %> <span class="muted">(<%= money(i.price) %>)</span></li><% }) %></ul>
+            <p class="line total"><span>Total</span><strong><%= money(o.total) %></strong></p>
+            <form class="status" method="post" action="/admin/orders/<%= o._id %>/status">
+                <span class="st st-<%= o.status.toLowerCase() %>"><%= o.status %></span>
+                <select name="status"><% statuses.forEach((s) => { %><option <%= s === o.status ? 'selected' : '' %>><%= s %></option><% }) %></select>
+                <button class="btn btn-small btn-dark">Update status</button>
+            </form>
+        </div>
+        <% }) %>
+    <% } %>
+</main>
+<%- include('../includes/footer') %>

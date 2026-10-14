@@ -1,0 +1,15 @@
+<%- include('../includes/header') %>
+<main class="wrap section-tight narrow">
+    <div class="login">
+        <div class="tick dark">⚙</div>
+        <h1>Admin login</h1>
+        <p class="muted">Sign in to manage books, orders and messages.</p>
+        <% if (error) { %><p class="message error"><%= error %></p><% } %>
+        <form class="form" action="/admin/login" method="post">
+            <label>Username <input type="text" name="username" required autofocus autocomplete="username"></label>
+            <label>Password <input type="password" name="password" required autocomplete="current-password"></label>
+            <button class="btn btn-dark btn-big btn-block">Log in</button>
+        </form>
+    </div>
+</main>
+<%- include('../includes/footer') %>

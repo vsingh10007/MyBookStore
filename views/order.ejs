@@ -1,0 +1,16 @@
+<%- include('includes/header') %>
+<main class="wrap section-tight narrow center-box">
+    <div class="box">
+        <div class="tick">✓</div>
+        <h1>Thank you, <%= order.name %>!</h1>
+        <p>Your order has been placed. Keep your order number:</p>
+        <p><strong class="orderno"><%= order.orderNo %></strong></p>
+        <div class="left">
+            <% order.items.forEach((i) => { %><p class="line"><span><%= i.title %> × <%= i.qty %></span><span><%= money(i.price * i.qty) %></span></p><% }) %>
+            <p class="line total"><span>Pay on delivery</span><strong><%= money(order.total) %></strong></p>
+            <p class="muted">Delivering to: <%= order.address %>, <%= order.city %> - <%= order.pincode %></p>
+        </div>
+        <p><a class="btn btn-buy btn-big" href="/books">Continue shopping</a></p>
+    </div>
+</main>
+<%- include('includes/footer') %>

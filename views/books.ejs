@@ -1,0 +1,21 @@
+<%- include('includes/header') %>
+<section class="page-top"><div class="wrap">
+    <h1>All books</h1>
+    <p><%= books.length %> book<%= books.length === 1 ? '' : 's' %><%= q ? ' found for “' + q + '”' : ' to explore' %></p>
+</div></section>
+<main class="wrap section-tight book-listing">
+    <form class="search" action="/books" method="get">
+        <input type="search" name="q" value="<%= q %>" placeholder="Search by title, author or category" maxlength="60">
+        <button class="btn btn-dark">Search</button>
+        <% if (q) { %><a class="btn btn-line" href="/books">Clear</a><% } %>
+    </form>
+
+    <% if (!books.length) { %>
+        <div class="empty"><div class="empty-ico">🔍</div><h3>No books found</h3><p>Try another word.</p><a class="btn btn-dark" href="/books">Show all books</a></div>
+    <% } else { %>
+        <div class="grid">
+            <% books.forEach((book) => { %><%- include('includes/card', { book }) %><% }) %>
+        </div>
+    <% } %>
+</main>
+<%- include('includes/footer') %>
